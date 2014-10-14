@@ -1,0 +1,54 @@
+Required libraries
+-------------------------------------------------------------------------------
+MAC-Telnet requires libpcap and libnet. Installation in Ubuntu GNU/Linux or
+any other Debian-based distribution is quite simple:
+
+$ sudo apt-get install build-essential libpcap-dev libnet1 libnet1-dev
+
+Under FreeBSD you will need to compile these libraries from ports:
+
+# cd /usr/ports/net/libnet-devel
+# make install
+# cd /usr/ports/net/libnet
+# make install
+
+Or install some packages with pkg_add ;-)
+
+
+Compilation
+-------------------------------------------------------------------------------
+Also easy. Standard libc required. Just type:
+
+$ make clean && make
+
+
+Discovering
+-------------------------------------------------------------------------------
+Run mactelnet with device name as an argument. It might take up several seconds
+to find all available hardware:
+
+# mactelnet eth0
+Discovering Mikrotik routers... (CTRL+C to abort)
+00:0d:b9:12:d3:4c  2n_2c2_1_1 4.3 MikroTik up~263days21h x86 0.0.0.0
+00:0d:b9:12:d3:4c  2n_2c2_1_1 4.3 MikroTik up~263days21h x86 0.0.0.0
+
+
+Connecting
+-------------------------------------------------------------------------------
+Two arguments are required - device name and hardware MAC of previously
+discovered remote Mikrotik router.
+
+# mactelnet eth0 00:0d:b9:12:d3:4c
+Connecting to 00:0d:b9:12:d3:4c ...
+Username: admin
+Password: 
+
+MikroTik RouterOS 2.9.27 (c) 1999-2006  http://www.mikrotik.com/
+Terminal linux detected, using multiline input mode
+[admin@MikroTik] >
+
+
+Questions?
+-------------------------------------------------------------------------------
+Don't hesitate to ask some questions. Feel free to write to elceef at itsec.pl
+

@@ -8,4 +8,4 @@ dist-clean:
 mt:
 	gcc -Wall mactelnet.c md5.c -o mactelnet -I/usr/local/include/libnet11 -L/usr/local/lib/libnet11 -lnet -lpcap
 debug:
-	gcc -Wall mactelnet.c md5.c -o mactelnet -I/usr/local/include/libnet11 -L/usr/local/lib/libnet11 -lnet -lpcap -D__DEBUG
+	gcc -Wall mactelnet.c md5.c -o mactelnet -I/usr/local/include/libnet11 -L/usr/local/lib/libnet11 -lnet -lpcap -O0 -g -D__DEBUG

@@ -554,15 +554,24 @@ static void handle_mndp(u_int8_t *args, struct pcap_pkthdr *header, u_int8_t *pa
     }
 
     p += len;
+    if (p-packet > header->caplen) {
+#ifdef __DEBUG
+      printf("Length mismatch, skipping\n");
+#endif
+      break;
+    }
     i += len + 3;
   }
 
-  memcpy(&ip, &ipv4_hdr->ip_src.s_addr, 4);
+  if (ipv4_hdr->ip_p == IPPROTO_UDP)
+  {
+    memcpy(&ip, &ipv4_hdr->ip_src.s_addr, 4);
 #if BYTE_ORDER == LITTLE_ENDIAN
-  ip = ntohl(ip);
+    ip = ntohl(ip);
 #endif
-  p = (u_int8_t *)&ip;
-  printf("%u.%u.%u.%u\n", p[3], p[2], p[1], p[0]);
+    p = (u_int8_t *)&ip;
+    printf("IP: %u.%u.%u.%u\n", p[3], p[2], p[1], p[0]);
+  }
 }
 
 
